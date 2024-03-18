@@ -15,14 +15,14 @@ func TestIsValidUUID(t *testing.T) {
 		{
 			"caseReturnTrue",
 			args{
-				u: "a0a8aea5-cc40-4293-b1f3-c3bc4e53d941",
+				u: "11111111-1111-1111-1111-111111111111",
 			},
 			true,
 		},
 		{
 			"caseReturnFalse",
 			args{
-				u: "a0a8aea5-cc40-4293-b1f3-",
+				u: "11111111-1111-1111-1111-",
 			},
 			false,
 		},
