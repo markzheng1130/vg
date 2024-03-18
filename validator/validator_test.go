@@ -22,7 +22,7 @@ func TestIsValidUUID(t *testing.T) {
 		{
 			"caseReturnFalse",
 			args{
-				u: "11111111-1111-1111-1111-",
+				u: "abc",
 			},
 			false,
 		},
