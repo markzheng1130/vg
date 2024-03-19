@@ -33,16 +33,17 @@ func (m *MockDB) EXPECT() *MockDBMockRecorder {
 	return m.recorder
 }
 
-// GetNameByIndex mocks base method.
-func (m *MockDB) GetNameByIndex(index int) string {
+// Get mocks base method.
+func (m *MockDB) Get(key string) (int, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetNameByIndex", index)
-	ret0, _ := ret[0].(string)
-	return ret0
+	ret := m.ctrl.Call(m, "Get", key)
+	ret0, _ := ret[0].(int)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
 }
 
-// GetNameByIndex indicates an expected call of GetNameByIndex.
-func (mr *MockDBMockRecorder) GetNameByIndex(index interface{}) *gomock.Call {
+// Get indicates an expected call of Get.
+func (mr *MockDBMockRecorder) Get(key interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetNameByIndex", reflect.TypeOf((*MockDB)(nil).GetNameByIndex), index)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Get", reflect.TypeOf((*MockDB)(nil).Get), key)
 }

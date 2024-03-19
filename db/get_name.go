@@ -1,11 +1,15 @@
 package db
 
 type DB interface {
-	GetNameByIndex(index int) string
+	Get(key string) (int, error)
 }
 
-func GetName(db DB, index int) string {
-	return db.GetNameByIndex(index)
+func GetFromDB(db DB, key string) int {
+	if value, err := db.Get(key); err == nil {
+		return value
+	}
+
+	return -1
 }
 
 // mockgen -destination get_name_mock.go -package db -source get_name.go

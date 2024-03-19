@@ -15,37 +15,40 @@ func TestGetName(t *testing.T) {
 	db := NewMockDB(ctrl)
 
 	db.EXPECT().
-		GetNameByIndex(gomock.Eq(1)).
-		DoAndReturn(func(_ int) string {
+		Get(gomock.Eq("mark")).
+		DoAndReturn(func(_ string) (int, error) {
 			time.Sleep(1000)
-			return "cat"
+			return 123, nil
 		})
 
 	db.EXPECT().
-		GetNameByIndex(gomock.Eq(2)).
-		Return("dog")
+		Get(gomock.Eq("eric")).
+		DoAndReturn(func(_ string) (int, error) {
+			time.Sleep(1000)
+			return 456, nil
+		})
 
 	tests := []struct {
 		name string
-		arg  int
-		want string
+		arg  string
+		want int
 	}{
 		{
 			"test-case-1",
-			1,
-			"cat",
+			"mark",
+			123,
 		},
 		{
 			"test-case-2",
-			2,
-			"dog",
+			"eric",
+			456,
 		},
 	}
 
 	for _, test := range tests {
 		Convey(test.name, t, func() {
-			name := GetName(db, test.arg)
-			So(name, ShouldEqual, test.want)
+			value := GetFromDB(db, test.arg)
+			So(value, ShouldEqual, test.want)
 		})
 	}
 }
