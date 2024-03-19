@@ -17,7 +17,7 @@ func myErrorHandling() {
 	fmt.Printf("[ENTER][ERROR HANDLING]\n")
 
 	if r := recover(); r != nil {
-		fmt.Printf("[%s]\n", r) //「recover()」要躲在「defer functoin」裡面，才會有機會被執行到
+		fmt.Printf("[%s]\n", r) //「recover()」要躲在「defer function」裡面，才會有機會被執行到
 	}
 
 	fmt.Printf("[END][ERROR HANDLING]\n")
