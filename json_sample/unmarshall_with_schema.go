@@ -29,8 +29,9 @@ func main() {
 			"street": "da-an Rd",
 			"city": "Taipei",
 			"zipcode": 106
-		}
-	}`)
+		},
+	"blood":"O"
+	}`) // 此JSON中的blood，因為無法匹配到相同名稱的欄位，所以不會被轉進golang struct
 
 	p := person{}
 	if err := json.Unmarshal(data, &p); err != nil {
