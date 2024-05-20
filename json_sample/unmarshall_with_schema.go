@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"os"
 )
 
 type person struct {
@@ -11,8 +12,8 @@ type person struct {
 
 	Address address // 若結構變數名稱，與JSON變數名稱相同，則可不需標籤
 
-	Age         int    `json:age`       // 若結構中的變數，匹配不到JSON變數，則就不會撈到值，會得到零值
-	PhoneNumber string `json:phone_num` // 同上
+	PhoneNumber string `json:phone_num` // 若結構中的變數，匹配不到JSON變數，則就不會撈到值，會得到零值
+	Age         int    `json:age`       // 同上
 }
 
 type address struct {
@@ -25,16 +26,22 @@ func main() {
 	data := []byte(`{
 	"lname": "Smith",
 	"fname": "John",
-		"address": {
-			"street": "da-an Rd",
-			"city": "Taipei",
-			"zipcode": 106
-		},
+	"address": {
+		"street": "da-an Rd",
+		"city": "Taipei",
+		"zipcode": 106
+	},
 	"blood":"O"
-	}`) // 此JSON中的blood，因為無法匹配到相同名稱的欄位，所以不會被轉進golang struct
+	}`) // 變數「blood」，因為無法匹配到相同名稱的欄位，所以不會被轉進golang struct
 
 	p := person{}
-	if err := json.Unmarshal(data, &p); err != nil {
+
+	if !json.Valid(data) { // 可以單獨驗證，是否為有效JSON格式
+		fmt.Printf("Got invalid JSON data")
+		os.Exit(1)
+	}
+
+	if err := json.Unmarshal(data, &p); err != nil { // 實際進行轉換 JSON to golang struct
 		fmt.Printf("Got error: %v", err)
 	}
 
