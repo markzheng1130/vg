@@ -26,8 +26,10 @@ func main() {
 	address := address{Street: "da-an Rd", City: "Taipei"}
 	p := person{LastName: "Smith", FirstName: "John", Address: address, phoneNumber: "0987-654-321"}
 
+	// --- 差在轉換的語法不一樣 ---
 	encoder := json.NewEncoder(os.Stdout)
 	encoder.SetIndent("", "\t")
+	// --------------------
 
 	if err := encoder.Encode(&p); err != nil {
 		fmt.Printf("Got error: %v", err)
