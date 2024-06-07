@@ -12,4 +12,4 @@ func GetFromDB(db DB, key string) int {
 	return -1
 }
 
-// mockgen -destination get_name_mock.go -package db -source get_name.go
+// mockgen -source get_name.go -destination get_name_mock.go -package db
