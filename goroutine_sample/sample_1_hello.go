@@ -14,7 +14,7 @@ func main() {
 
 	fmt.Printf("[main][start]\n")
 
-	for countDown := 3; countDown > 0; countDown-- {
+	for countDown := 3; countDown > 0; countDown-- { // 給「hello()」3秒的時間，讓它把事情做完 (印出hello)
 		fmt.Printf("[countDown][%v]\n", countDown)
 		time.Sleep(time.Second * 1)
 	}
