@@ -5,14 +5,18 @@ import (
 )
 
 func producer(ch chan int) {
-	ch <- 10
+	ch <- 1
+	ch <- 2
 }
 
-func main() {
+func main() { // main 扮演consumer
 	ch := make(chan int, 1)
 
 	go producer(ch)
 
-	i := <-ch // main 扮演consumer
-	fmt.Printf("[Got][%v]", i)
+	a := <-ch
+	fmt.Printf("[a][%v]\n", a)
+
+	b := <-ch
+	fmt.Printf("[b][%v]\n", b)
 }
