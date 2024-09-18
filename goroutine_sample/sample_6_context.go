@@ -14,7 +14,7 @@ func countNumbers(c context.Context, out chan int) {
 			out <- i
 			return
 		default:
-			time.Sleep(time.Microsecond * 100)
+			time.Sleep(time.Microsecond * 1000)
 			i++
 		}
 	}
@@ -28,8 +28,8 @@ func main() {
 	go countNumbers(c1, out)
 
 	fmt.Printf("[main][start]\n")
-	time.Sleep(time.Microsecond * 100 * 5) // 等待500毫秒
-	cancel()                               // 500毫秒後，呼叫「cancel()」，它會把「c.Done()」中的「zero size channel」給「close掉」
+	time.Sleep(time.Second * 5) // 等待500毫秒
+	cancel()                    // 500毫秒後，呼叫「cancel()」，它會把「c.Done()」中的「zero size channel」給「close掉」
 
 	fmt.Printf("[out][%v]\n", <-out)
 	fmt.Printf("[main][end]\n")
