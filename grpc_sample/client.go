@@ -29,11 +29,11 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 
-	GRPCMaxCallRecvMsgSizeInBytes := 1000000
+	GRPCMaxCallRecvMsgSizeInBytes := 100000000000
 	res, err := client.Greet(ctx, req, grpc.MaxCallRecvMsgSize(GRPCMaxCallRecvMsgSizeInBytes))
 	if err != nil {
 		log.Fatalf("Error calling Greet: %v", err)
 	}
 
-	fmt.Println("Response from server:", res.GetMessage())
+	fmt.Println("Response from server:", len(res.GetMessage()))
 }
