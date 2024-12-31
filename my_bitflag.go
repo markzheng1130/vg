@@ -17,24 +17,24 @@ func main() {
 func ExtractCreditAllocationStatus(CreditAllocations int32) []string {
 	creditAllocationStatus := []string{}
 
-	if extractBit(CreditAllocations, 0) == 1 {
+	if extractBitFromPosition(CreditAllocations, 0) == 1 {
 		creditAllocationStatus = append(creditAllocationStatus, string(creditAllocationBitMapping[0]))
 	}
-	if extractBit(CreditAllocations, 1) == 1 {
+	if extractBitFromPosition(CreditAllocations, 1) == 1 {
 		creditAllocationStatus = append(creditAllocationStatus, string(creditAllocationBitMapping[1]))
 	}
-	if extractBit(CreditAllocations, 2) == 1 {
+	if extractBitFromPosition(CreditAllocations, 2) == 1 {
 		creditAllocationStatus = append(creditAllocationStatus, string(creditAllocationBitMapping[2]))
 	}
-	if extractBit(CreditAllocations, 3) == 1 {
+	if extractBitFromPosition(CreditAllocations, 3) == 1 {
 		creditAllocationStatus = append(creditAllocationStatus, string(creditAllocationBitMapping[3]))
 	}
 
 	return creditAllocationStatus
 }
 
-func extractBit(num int32, position uint) int32 {
-	return (num >> position) & 1 // Extract the bit (0 or 1) from the position.
+func extractBitFromPosition(num int32, pos uint) int32 {
+	return (num >> pos) & 1 // Extract the bit (0 or 1) from position.
 }
 
 var creditAllocationBitMapping = map[int32]creditAllocation{
