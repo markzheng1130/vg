@@ -18,16 +18,16 @@ func ExtractCreditAllocationStatus(CreditAllocations int32) []string {
 	creditAllocationStatus := []string{}
 
 	if extractBitFromPosition(CreditAllocations, 0) == 1 {
-		creditAllocationStatus = append(creditAllocationStatus, string(creditAllocationBitMapping[0]))
+		creditAllocationStatus = append(creditAllocationStatus, creditAllocationBitMapping[0].String())
 	}
 	if extractBitFromPosition(CreditAllocations, 1) == 1 {
-		creditAllocationStatus = append(creditAllocationStatus, string(creditAllocationBitMapping[1]))
+		creditAllocationStatus = append(creditAllocationStatus, creditAllocationBitMapping[1].String())
 	}
 	if extractBitFromPosition(CreditAllocations, 2) == 1 {
-		creditAllocationStatus = append(creditAllocationStatus, string(creditAllocationBitMapping[2]))
+		creditAllocationStatus = append(creditAllocationStatus, creditAllocationBitMapping[2].String())
 	}
 	if extractBitFromPosition(CreditAllocations, 3) == 1 {
-		creditAllocationStatus = append(creditAllocationStatus, string(creditAllocationBitMapping[3]))
+		creditAllocationStatus = append(creditAllocationStatus, creditAllocationBitMapping[3].String())
 	}
 
 	return creditAllocationStatus
@@ -47,10 +47,10 @@ var creditAllocationBitMapping = map[int32]creditAllocation{
 type creditAllocation string
 
 const ( // Should maintain wording with HIE figma: https://www.figma.com/design/Qc88PAh9wdodfzdUwV5F82/Server-%26-Workload-Protection?node-id=4871-18491&t=7ZS9JJIrCiPsoqHQ-0
-	endpointSensorDetectionAndResponse        creditAllocation = "Endpoint sensor detection and response (1)" // [TODO]: remove brackets
-	advancedEndpointSecurity                  creditAllocation = "Advanced Endpoint Security (2)"
-	advancedServerAndWorkloadProtection       creditAllocation = "Advanced Server & Workload Protection (4)"
-	sapScannerForVisionOneEndpointSecurityPro creditAllocation = "SAP Scanner for Vision One - Endpoint Security (Pro) (8)"
+	endpointSensorDetectionAndResponse        creditAllocation = "Endpoint sensor detection and response (1)"               // [TODO]: remove brackets
+	advancedEndpointSecurity                  creditAllocation = "Advanced Endpoint Security (2)"                           // [TODO]: remove brackets
+	advancedServerAndWorkloadProtection       creditAllocation = "Advanced Server & Workload Protection (4)"                // [TODO]: remove brackets
+	sapScannerForVisionOneEndpointSecurityPro creditAllocation = "SAP Scanner for Vision One - Endpoint Security (Pro) (8)" // [TODO]: remove brackets
 )
 
 func (c creditAllocation) String() string {
